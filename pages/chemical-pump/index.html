@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ackumen - Standard Equipment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="chemical-pump.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <span class="brand-name"><i class="bi bi-gear"></i> Ackumen<sup>™</sup></span>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+        </div>
+        <ul class="sidebar-nav">
+            <li class="nav-item">
+                <a href="#"><i class="bi bi-grid-fill"></i><span>Dashboard</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="#"><i class="bi bi-bar-chart-fill"></i><span>Process View</span></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-file-earmark-text"></i><span>Opportunity Management</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-gear-fill"></i><span>Customer Setup</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-star-fill"></i><span>Account Management</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="#"><i class="bi bi-journal-text"></i><span>IL-Toolbox</span></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-clipboard-data"></i><span>Lab Analysis</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-graph-up"></i><span>Connected Planning</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="#"><i class="bi bi-cart"></i><span>Orders</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="#"><i class="bi bi-box-seam"></i><span>Order Management</span></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-diagram-3"></i><span>Value Streams</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-life-preserver"></i><span>Support</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-person-fill"></i><span>My User Account</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-gear"></i><span>Admin</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-geo-alt"></i><span>Location Audit</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-wrapper">
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Title -->
+            <h5 class="page-title">Standard Equipment</h5>
+
+            <!-- Search/Filter Bar -->
+            <div class="filter-bar">
+                <div class="category-dropdown">
+                    <select class="form-select" id="categorySelect">
+                        <option selected>All Equipment Categories</option>
+                    </select>
+                </div>
+                <div class="search-input-wrapper">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button class="btn btn-search">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+
+            <!-- Settings Panel -->
+            <div class="settings-panel">
+                <div class="row">
+                    <!-- Customer Settings -->
+                    <div class="col-md-4">
+                        <div class="settings-section">
+                            <h6 class="section-title text-success">Customer Settings</h6>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Customer Location <span class="required">*</span></label>
+                                <select class="form-select" id="customerLocation">
+                                    <option selected value="">Select...</option>
+                                    <option value="gp-brewton">GP Brewton AL (US)</option>
+                                    <option value="3m-brasil">3M Do Brasil Sumare SP (BR)</option>
+                                    <option value="airuici-shanghai">Airuici Shanghai (CN)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Purchase Type <span class="required">*</span></label>
+                                <select class="form-select" id="purchaseType">
+                                    <option selected value="">Select...</option>
+                                    <option value="resale">Capital/Expense</option>
+                                    <option value="internal">Resale</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Sales Org <span class="required">*</span></label>
+                                <select class="form-select" id="salesOrg" disabled>
+                                    <option selected value="">Select...</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Application Settings -->
+                    <div class="col-md-4">
+                        <div class="settings-section">
+                            <h6 class="section-title text-success">Application Settings</h6>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Flow requirements <span class="required">*</span></label>
+                                <div class="input-with-unit">
+                                    <input type="text" class="form-control" id="flowRequirements" placeholder="-">
+                                    <select class="form-select unit-select" id="flowUnit">
+                                        <option selected>L/h</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Backpressure <span class="required">*</span></label>
+                                <div class="input-with-unit">
+                                    <input type="text" class="form-control" id="backpressure" placeholder="-">
+                                    <select class="form-select unit-select" id="pressureUnit">
+                                        <option selected>bar</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Is variable speed/flow control needed? <span class="required">*</span></label>
+                                <div class="radio-group">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="variableSpeed" id="variableSpeedYes" checked>
+                                        <label class="form-check-label" for="variableSpeedYes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="variableSpeed" id="variableSpeedNo">
+                                        <label class="form-check-label" for="variableSpeedNo">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Settings -->
+                    <div class="col-md-4">
+                        <div class="settings-section">
+                            <h6 class="section-title text-success">Product Settings <i class="bi bi-info-circle-fill text-muted info-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Auto-populated from database. Adjustments are welcome."></i></h6>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Chemical Product Name <span class="required">*</span></label>
+                                <select class="form-select" id="chemicalProduct">
+                                    <option selected value="">Select...</option>
+                                    <option value="product1">Product 1</option>
+                                    <option value="product2">Product 2</option>
+                                    <option value="product3">Product 3</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Viscosity <span class="required">*</span></label>
+                                <div class="input-with-unit">
+                                    <input type="text" class="form-control" id="viscosity" placeholder="-">
+                                    <select class="form-select unit-select">
+                                        <option selected>cP</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">pH <span class="required">*</span></label>
+                                <div class="input-with-unit">
+                                    <input type="text" class="form-control" id="phValue" placeholder="-">
+                                    <select class="form-select unit-select">
+                                        <option selected>pH</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Action Buttons -->
+            <div class="bottom-actions">
+                <a href="../eo/index.html" class="btn btn-outline-success btn-back">Back</a>
+                <button class="btn btn-success btn-continue" id="continueBtn">Continue</button>
+            </div>
+
+            <!-- Recommendation Section (hidden initially) -->
+            <div id="recommendationSection" class="recommendation-section" style="display: none;">
+                <!-- CSE / Out-of-range Message -->
+                <div id="cseMessage" class="cse-message" style="display: none;">
+                    <p><strong>No standardized metering pump is available for this selection. Please modify your selection criteria or <a href="#">Click here</a> to proceed with a custom equipment order</strong></p>
+                </div>
+
+                <!-- Normal Recommendation Content -->
+                <div id="recNormalContent">
+                    <!-- Recommended Equipment -->
+                    <div class="all-options-section" id="recommendedGroup">
+                        <div class="all-options-header" data-bs-toggle="collapse" data-bs-target="#recommendedCollapse" aria-expanded="true" aria-controls="recommendedCollapse">
+                            <span><i class="bi bi-chevron-right collapse-icon"></i> <span id="recommendedEquipmentTitle">Recommended Equipment (1)</span></span>
+                        </div>
+                        <div class="collapse show" id="recommendedCollapse">
+                            <div class="all-options-body">
+                                <div class="recommendation-card" id="recommendedEquipmentCard">
+                                    <div class="rec-card-inner">
+                                        <div class="rec-image">
+                                            <img id="recEquipImage" src="../../assets/DDA.png" alt="Pump">
+                                        </div>
+                                        <div class="rec-details">
+                                            <h6 id="recEquipName">Grundfos DDA-C FCM 17-10</h6>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">SKU</span>
+                                                <span class="rec-value" id="recEquipSKU">: 8000101</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Lead Time</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 30 days</span>
+                                            </div>
+                                            <div class="rec-detail-row" id="recEquipNote" style="display: none;">
+                                                <span class="rec-label">Note</span>
+                                                <span class="rec-value" id="recEquipNoteText"></span>
+                                            </div>
+                                        </div>
+                                        <div class="rec-pricing">
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Quantity</span>
+                                                <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Recommended Price</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : <span id="recEquipPrice">1200</span> USD</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Requested Price</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i>: <input type="number" class="form-control form-control-sm d-inline-block price-input" id="recEquipRequestedPrice" value="1400"> USD</span>
+                                            </div>
+                                        </div>
+                                        <div class="rec-actions">
+                                            <span class="badge bg-success recommended-badge">Recommended</span>
+                                            <button class="btn btn-sm btn-success">Add to Cart</button>
+                                            <button class="btn btn-sm btn-success">Order Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- All Available Options (collapsible, closed by default) -->
+                    <div class="all-options-section">
+                        <div class="all-options-header" data-bs-toggle="collapse" data-bs-target="#allOptionsCollapse" aria-expanded="false" aria-controls="allOptionsCollapse">
+                            <span><i class="bi bi-chevron-right collapse-icon"></i> All Available Options (9)</span>
+                        </div>
+                        <div class="collapse" id="allOptionsCollapse">
+                            <div class="all-options-body">
+                                <!-- DDA Family (Variable Speed) -->
+                                <h6 class="all-options-subheader">DDA Family (Variable Speed)</h6>
+
+                                <!-- Grundfos DDA-C FCM 17-10 -->
+                                <div class="recommendation-card">
+                                    <div class="rec-card-inner">
+                                        <div class="rec-image">
+                                            <img src="../../assets/DDA.png" alt="DDA Pump">
+                                        </div>
+                                        <div class="rec-details">
+                                            <h6>Grundfos DDA-C FCM 17-10</h6>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">SKU</span>
+                                                <span class="rec-value">: 8000101</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Lead Time</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 30 days</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Note</span>
+                                                <span class="rec-value">: Built-in communications</span>
+                                            </div>
+                                        </div>
+                                        <div class="rec-pricing">
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Quantity</span>
+                                                <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Recommended Price</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 1200 USD</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Requested Price</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i>: <input type="number" class="form-control form-control-sm d-inline-block price-input" value="1400"> USD</span>
+                                            </div>
+                                        </div>
+                                        <div class="rec-actions">
+                                            <button class="btn btn-sm btn-success">Add to Cart</button>
+                                            <button class="btn btn-sm btn-success">Order Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Grundfos DDA FCM 60-10 -->
+                                <div class="recommendation-card">
+                                    <div class="rec-card-inner">
+                                        <div class="rec-image">
+                                            <img src="../../assets/DDA.png" alt="DDA Pump">
+                                        </div>
+                                        <div class="rec-details">
+                                            <h6>Grundfos DDA FCM 60-10</h6>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">SKU</span>
+                                                <span class="rec-value">: 8000102</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Lead Time</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 30 days</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Note</span>
+                                                <span class="rec-value">: With Ebox and CIM 200</span>
+                                            </div>
+                                        </div>
+                                        <div class="rec-pricing">
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Quantity</span>
+                                                <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Recommended Price</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 1450 USD</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Requested Price</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i>: <input type="number" class="form-control form-control-sm d-inline-block price-input" value="1600"> USD</span>
+                                            </div>
+                                        </div>
+                                        <div class="rec-actions">
+                                            <button class="btn btn-sm btn-success">Add to Cart</button>
+                                            <button class="btn btn-sm btn-success">Order Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Grundfos DDA FCM 120-7 -->
+                                <div class="recommendation-card">
+                                    <div class="rec-card-inner">
+                                        <div class="rec-image">
+                                            <img src="../../assets/DDA.png" alt="DDA Pump">
+                                        </div>
+                                        <div class="rec-details">
+                                            <h6>Grundfos DDA FCM 120-7</h6>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">SKU</span>
+                                                <span class="rec-value">: 8000103</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Lead Time</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 30 days</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Note</span>
+                                                <span class="rec-value">: With Ebox and CIM 200</span>
+                                            </div>
+                                        </div>
+                                        <div class="rec-pricing">
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Quantity</span>
+                                                <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Recommended Price</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 1650 USD</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Requested Price</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i>: <input type="number" class="form-control form-control-sm d-inline-block price-input" value="1800"> USD</span>
+                                            </div>
+                                        </div>
+                                        <div class="rec-actions">
+                                            <button class="btn btn-sm btn-success">Add to Cart</button>
+                                            <button class="btn btn-sm btn-success">Order Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Grundfos DDA FCM 200-4 -->
+                                <div class="recommendation-card">
+                                    <div class="rec-card-inner">
+                                        <div class="rec-image">
+                                            <img src="../../assets/DDA.png" alt="DDA Pump">
+                                        </div>
+                                        <div class="rec-details">
+                                            <h6>Grundfos DDA FCM 200-4</h6>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">SKU</span>
+                                                <span class="rec-value">: 8000104</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Lead Time</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 30 days</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Note</span>
+                                                <span class="rec-value">: With Ebox and CIM 200</span>
+                                            </div>
+                                        </div>
+                                        <div class="rec-pricing">
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Quantity</span>
+                                                <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Recommended Price</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 1850 USD</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Requested Price</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i>: <input type="number" class="form-control form-control-sm d-inline-block price-input" value="2000"> USD</span>
+                                            </div>
+                                        </div>
+                                        <div class="rec-actions">
+                                            <button class="btn btn-sm btn-success">Add to Cart</button>
+                                            <button class="btn btn-sm btn-success">Order Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- DDE Family (Fixed Speed) -->
+                                <h6 class="all-options-subheader">DDE Family (Fixed Speed)</h6>
+
+                                <!-- Grundfos DDE 6-10 -->
+                                <div class="recommendation-card">
+                                    <div class="rec-card-inner">
+                                        <div class="rec-image">
+                                            <img src="../../assets/DDE.png" alt="DDE Pump">
+                                        </div>
+                                        <div class="rec-details">
+                                            <h6>Grundfos DDE 6-10</h6>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">SKU</span>
+                                                <span class="rec-value">: 8000201</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Lead Time</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 30 days</span>
+                                            </div>
+                                        </div>
+                                        <div class="rec-pricing">
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Quantity</span>
+                                                <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Recommended Price</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 850 USD</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Requested Price</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i>: <input type="number" class="form-control form-control-sm d-inline-block price-input" value="950"> USD</span>
+                                            </div>
+                                        </div>
+                                        <div class="rec-actions">
+                                            <button class="btn btn-sm btn-success">Add to Cart</button>
+                                            <button class="btn btn-sm btn-success">Order Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Grundfos DDE 60-10 -->
+                                <div class="recommendation-card">
+                                    <div class="rec-card-inner">
+                                        <div class="rec-image">
+                                            <img src="../../assets/DDE.png" alt="DDE Pump">
+                                        </div>
+                                        <div class="rec-details">
+                                            <h6>Grundfos DDE 60-10</h6>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">SKU</span>
+                                                <span class="rec-value">: 8000202</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Lead Time</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 30 days</span>
+                                            </div>
+                                        </div>
+                                        <div class="rec-pricing">
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Quantity</span>
+                                                <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Recommended Price</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 1100 USD</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Requested Price</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i>: <input type="number" class="form-control form-control-sm d-inline-block price-input" value="1250"> USD</span>
+                                            </div>
+                                        </div>
+                                        <div class="rec-actions">
+                                            <button class="btn btn-sm btn-success">Add to Cart</button>
+                                            <button class="btn btn-sm btn-success">Order Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Grundfos DDE 120-7 -->
+                                <div class="recommendation-card">
+                                    <div class="rec-card-inner">
+                                        <div class="rec-image">
+                                            <img src="../../assets/DDE.png" alt="DDE Pump">
+                                        </div>
+                                        <div class="rec-details">
+                                            <h6>Grundfos DDE 120-7</h6>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">SKU</span>
+                                                <span class="rec-value">: 8000203</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Lead Time</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 30 days</span>
+                                            </div>
+                                        </div>
+                                        <div class="rec-pricing">
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Quantity</span>
+                                                <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Recommended Price</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 1350 USD</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Requested Price</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i>: <input type="number" class="form-control form-control-sm d-inline-block price-input" value="1500"> USD</span>
+                                            </div>
+                                        </div>
+                                        <div class="rec-actions">
+                                            <button class="btn btn-sm btn-success">Add to Cart</button>
+                                            <button class="btn btn-sm btn-success">Order Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Grundfos DDE 200-4 -->
+                                <div class="recommendation-card">
+                                    <div class="rec-card-inner">
+                                        <div class="rec-image">
+                                            <img src="../../assets/DDE.png" alt="DDE Pump">
+                                        </div>
+                                        <div class="rec-details">
+                                            <h6>Grundfos DDE 200-4</h6>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">SKU</span>
+                                                <span class="rec-value">: 8000204</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Lead Time</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 30 days</span>
+                                            </div>
+                                        </div>
+                                        <div class="rec-pricing">
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Quantity</span>
+                                                <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Recommended Price</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 1550 USD</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Requested Price</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i>: <input type="number" class="form-control form-control-sm d-inline-block price-input" value="1700"> USD</span>
+                                            </div>
+                                        </div>
+                                        <div class="rec-actions">
+                                            <button class="btn btn-sm btn-success">Add to Cart</button>
+                                            <button class="btn btn-sm btn-success">Order Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- LATAM -->
+                                <h6 class="all-options-subheader">LATAM Region</h6>
+
+                                <!-- Prominent Metering Pump -->
+                                <div class="recommendation-card">
+                                    <div class="rec-card-inner">
+                                        <div class="rec-image">
+                                            <img src="../../assets/Prominent Pump.jpg" alt="Prominent Pump">
+                                        </div>
+                                        <div class="rec-details">
+                                            <h6>Prominent Metering Pump</h6>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">SKU</span>
+                                                <span class="rec-value">: 8000301</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Lead Time</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 45 days</span>
+                                            </div>
+                                        </div>
+                                        <div class="rec-pricing">
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Quantity</span>
+                                                <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Recommended Price</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 900 USD</span>
+                                            </div>
+                                            <div class="rec-detail-row">
+                                                <span class="rec-label">Requested Price</span>
+                                                <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i>: <input type="number" class="form-control form-control-sm d-inline-block price-input" value="1050"> USD</span>
+                                            </div>
+                                        </div>
+                                        <div class="rec-actions">
+                                            <button class="btn btn-sm btn-success">Add to Cart</button>
+                                            <button class="btn btn-sm btn-success">Order Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- end recNormalContent -->
+
+                <!-- Bottom Actions for Recommendation -->
+                <div class="bottom-actions" id="recBottomActions">
+                    <button class="btn btn-outline-success btn-back" id="recBackBtn">Back</button>
+                    <div>
+                        <button class="btn btn-success me-2">Add to Cart</button>
+                        <button class="btn btn-success">Order Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="chemical-pump.js"></script>
+
+    <!-- Toast for validation -->
+    <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1100;">
+        <div id="validationToast" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Please fill all the required fields
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

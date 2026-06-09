@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ackumen - Standard Equipment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="level-sensor.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <span class="brand-name"><i class="bi bi-gear"></i> Ackumen<sup>™</sup></span>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+        </div>
+        <ul class="sidebar-nav">
+            <li class="nav-item">
+                <a href="#"><i class="bi bi-grid-fill"></i><span>Dashboard</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="#"><i class="bi bi-bar-chart-fill"></i><span>Process View</span></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-file-earmark-text"></i><span>Opportunity Management</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-gear-fill"></i><span>Customer Setup</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-star-fill"></i><span>Account Management</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="#"><i class="bi bi-journal-text"></i><span>IL-Toolbox</span></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-clipboard-data"></i><span>Lab Analysis</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-graph-up"></i><span>Connected Planning</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="#"><i class="bi bi-cart"></i><span>Orders</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="#"><i class="bi bi-box-seam"></i><span>Order Management</span></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-diagram-3"></i><span>Value Streams</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-life-preserver"></i><span>Support</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-person-fill"></i><span>My User Account</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-gear"></i><span>Admin</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-geo-alt"></i><span>Location Audit</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-wrapper">
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Title -->
+            <h5 class="page-title">Standard Equipment</h5>
+
+            <!-- Search/Filter Bar -->
+            <div class="filter-bar">
+                <div class="category-dropdown">
+                    <select class="form-select" id="categorySelect">
+                        <option selected>All Equipment Categories</option>
+                    </select>
+                </div>
+                <div class="search-input-wrapper">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button class="btn btn-search">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+
+            <!-- Settings Panel -->
+            <div class="settings-panel">
+                <div class="row">
+                    <!-- Customer Settings -->
+                    <div class="col-md-4">
+                        <div class="settings-section">
+                            <h6 class="section-title text-success">Customer Settings</h6>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Customer Location <span class="required">*</span></label>
+                                <select class="form-select" id="customerLocation">
+                                    <option selected value="">Select...</option>
+                                    <option value="gp-brewton">GP Brewton AL (US)</option>
+                                    <option value="3m-brasil">3M Do Brasil Sumare SP (BR)</option>
+                                    <option value="airuici-shanghai">Airuici Shanghai (CN)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Purchase Type <span class="required">*</span></label>
+                                <select class="form-select" id="purchaseType">
+                                    <option selected value="">Select...</option>
+                                    <option value="resale">Capital/Expense</option>
+                                    <option value="internal">Resale</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Sales Org <span class="required">*</span></label>
+                                <select class="form-select" id="salesOrg" disabled>
+                                    <option selected value="">Select...</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Is there cellular coverage? <span class="required">*</span> <i class="bi bi-info-circle-fill text-muted info-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cellular coverage is required for both the radar and ultrasonic level sensor options. For ultrasonic sensors, a gateway is used. For radar sensors, no gateway is required as the devices have a cellular modem embedded in the sensor. If there is no cellular coverage where the sensor will be installed, and the gateway (if applicable) cannot be moved to a location where there is suitable coverage, please consult your CSE team for alternate options."></i></label>
+                                <div class="radio-group">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="cellularCoverage" id="cellularYes" checked>
+                                        <label class="form-check-label" for="cellularYes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="cellularCoverage" id="cellularNo">
+                                        <label class="form-check-label" for="cellularNo">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Is a gateway already installed on-site? <span class="required">*</span> <i class="bi bi-info-circle-fill text-muted info-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Gateway must be located where cell coverage exists without significant objects between sensor and gateway, such as thick concrete walls. Line of sight between gateway and sensor is preferred."></i></label>
+                                <div class="radio-group">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gatewayInstalled" id="gatewayYes" checked>
+                                        <label class="form-check-label" for="gatewayYes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gatewayInstalled" id="gatewayNo">
+                                        <label class="form-check-label" for="gatewayNo">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Container Settings -->
+                    <div class="col-md-4">
+                        <div class="settings-section">
+                            <h6 class="section-title text-success">Container Settings</h6>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Select Container <div class="form-check form-switch d-inline-block ms-1 me-1 align-middle"><input class="form-check-input" type="checkbox" id="containerToggle"></div> <i class="bi bi-info-circle-fill text-muted info-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Get process view configured container information"></i></label>
+                                <select class="form-select" id="selectContainer" disabled>
+                                    <option selected value="">Select...</option>
+                                    <option value="container1">Container Configuration 1</option>
+                                    <option value="container2">Container Configuration 2</option>
+                                    <option value="container3">Container Configuration 3</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Container Height <span class="required">*</span></label>
+                                <div class="input-with-unit">
+                                    <input type="text" class="form-control" id="containerHeightInput" placeholder="-">
+                                    <select class="form-select unit-select" id="containerHeightUnit">
+                                        <option selected>ft</option>
+                                        <option>m</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Product Stored <span class="required">*</span></label>
+                                <select class="form-select" id="productStored">
+                                    <option selected value="">Select...</option>
+                                    <option value="product1">Product 1</option>
+                                    <option value="product2">Product 2</option>
+                                    <option value="product3">Product 3</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Is the container isolated? <span class="required">*</span> <i class="bi bi-info-circle-fill text-muted info-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="With no other containers close by that need level monitoring now or in the future"></i></label>
+                                <div class="radio-group">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="containerIsolated" id="isolatedYes" checked>
+                                        <label class="form-check-label" for="isolatedYes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="containerIsolated" id="isolatedNo">
+                                        <label class="form-check-label" for="isolatedNo">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Settings -->
+                    <div class="col-md-4">
+                        <div class="settings-section">
+                            <h6 class="section-title text-success">Product Settings <i class="bi bi-info-circle-fill text-muted info-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Auto-populated based on product selection. Adjust values if necessary."></i></h6>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Boiling Point</label>
+                                <div class="input-with-unit">
+                                    <input type="text" class="form-control" id="boilingPoint" placeholder="-">
+                                    <select class="form-select unit-select">
+                                        <option selected>°C</option>
+                                        <option>°F</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Viscosity</label>
+                                <div class="input-with-unit">
+                                    <input type="text" class="form-control" id="viscosity" placeholder="-">
+                                    <select class="form-select unit-select">
+                                        <option selected>cP</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Vapor Pressure</label>
+                                <div class="input-with-unit">
+                                    <input type="text" class="form-control" id="vaporPressure" placeholder="-">
+                                    <select class="form-select unit-select">
+                                        <option selected>kPa</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Is it a detergent or surfactant? <i class="bi bi-info-circle-fill text-muted info-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="The product is likely to foam"></i></label>
+                                <div class="radio-group">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="detergent" id="detergentYes" checked>
+                                        <label class="form-check-label" for="detergentYes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="detergent" id="detergentNo">
+                                        <label class="form-check-label" for="detergentNo">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Is it an oxidizer?</label>
+                                <div class="radio-group">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="oxidizer" id="oxidizerYes" checked>
+                                        <label class="form-check-label" for="oxidizerYes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="oxidizer" id="oxidizerNo">
+                                        <label class="form-check-label" for="oxidizerNo">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Is it classified as vapor producing/fuming?</label>
+                                <div class="radio-group">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="vaporProducing" id="vaporYes" checked>
+                                        <label class="form-check-label" for="vaporYes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="vaporProducing" id="vaporNo">
+                                        <label class="form-check-label" for="vaporNo">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Is the chemical corrosive?</label>
+                                <div class="radio-group">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="corrosive" id="corrosiveYes" checked>
+                                        <label class="form-check-label" for="corrosiveYes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="corrosive" id="corrosiveNo">
+                                        <label class="form-check-label" for="corrosiveNo">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Action Buttons -->
+            <div class="bottom-actions">
+                <a href="../eo/index.html" class="btn btn-outline-success btn-back">Back</a>
+                <button class="btn btn-success btn-continue" id="continueBtn">Continue</button>
+            </div>
+
+            <!-- Recommendation Section (hidden initially) -->
+            <div id="recommendationSection" class="recommendation-section" style="display: none;">
+                <!-- CSE Message (shown when custom sensor required) -->
+                <div id="cseMessage" class="cse-message" style="display: none;">
+                    <p><strong>No standardized equipment is available for this selection. Please modify your selection criteria or <a href="#">Click here</a> to proceed with a custom equipment order</strong></p>
+                </div>
+
+                <!-- Normal Recommendation Content -->
+                <div id="recNormalContent">
+                <!-- Recommended Equipment -->
+                <div class="all-options-section" id="recommendedGroup">
+                    <div class="all-options-header" data-bs-toggle="collapse" data-bs-target="#recommendedCollapse" aria-expanded="true" aria-controls="recommendedCollapse">
+                        <span><i class="bi bi-chevron-right collapse-icon"></i> <span id="recommendedEquipmentTitle">Recommended Equipment (1)</span></span>
+                    </div>
+                    <div class="collapse show" id="recommendedCollapse">
+                        <div class="all-options-body">
+                            <div class="recommendation-card" id="recommendedEquipmentCard">
+                                <div class="rec-card-inner">
+                                    <div class="rec-image">
+                                        <img id="recEquipImage" src="../../assets/Tank Level Sensor.png" alt="Sensor">
+                                    </div>
+                                    <div class="rec-details">
+                                        <h6 id="recEquipName">Tekelek Ultrasonic LoRa Sensor</h6>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">SKU</span>
+                                            <span class="rec-value" id="recEquipSKU">: 7000642</span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Lead Time</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 20 days</span>
+                                        </div>
+                                    </div>
+                                    <div class="rec-pricing">
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Quantity</span>
+                                            <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Recommended Price</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : <span id="recEquipPrice">250</span> USD</span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Requested Price</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i>: <input type="number" class="form-control form-control-sm d-inline-block price-input" id="recEquipRequestedPrice" value="300"> USD</span>
+                                        </div>
+                                    </div>
+                                    <div class="rec-actions">
+                                        <span class="badge bg-success recommended-badge">Recommended</span>
+                                        <button class="btn btn-sm btn-success">Add to Cart</button>
+                                        <button class="btn btn-sm btn-success">Order Now</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accessories -->
+                <div class="all-options-section" id="accessoriesGroup" style="display: none;">
+                    <div class="all-options-header" data-bs-toggle="collapse" data-bs-target="#accessoriesCollapse" aria-expanded="true" aria-controls="accessoriesCollapse">
+                        <span><i class="bi bi-chevron-right collapse-icon"></i> Accessories (1)</span>
+                    </div>
+                    <div class="collapse show" id="accessoriesCollapse">
+                        <div class="all-options-body">
+                            <div class="recommendation-card">
+                                <div class="rec-card-inner">
+                                    <div class="rec-image">
+                                        <img src="../../assets/multitech-gateway.png" alt="MT Gateway">
+                                    </div>
+                                    <div class="rec-details">
+                                        <h6>MT Gateway</h6>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">SKU</span>
+                                            <span class="rec-value">: 7000643</span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Lead Time</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 20 days</span>
+                                        </div>
+                                    </div>
+                                    <div class="rec-pricing">
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Quantity</span>
+                                            <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Recommended Price</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 600 USD</span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Requested Price</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i>: <input type="number" class="form-control form-control-sm d-inline-block price-input" value="750"> USD</span>
+                                        </div>
+                                    </div>
+                                    <div class="rec-actions">
+                                        <button class="btn btn-sm btn-success">Add to Cart</button>
+                                        <button class="btn btn-sm btn-success">Order Now</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- All Available Options (collapsible, closed by default) -->
+                <div class="all-options-section">
+                    <div class="all-options-header" data-bs-toggle="collapse" data-bs-target="#allOptionsCollapse" aria-expanded="false" aria-controls="allOptionsCollapse">
+                        <span><i class="bi bi-chevron-right collapse-icon"></i> All Available Options (5)</span>
+                    </div>
+                    <div class="collapse" id="allOptionsCollapse">
+                        <div class="all-options-body">
+                            <!-- Tekelek Ultrasonic LoRa Sensor -->
+                            <div class="recommendation-card">
+                                <div class="rec-card-inner">
+                                    <div class="rec-image">
+                                        <img src="../../assets/Ultrasonic Sensor.png" alt="Ultrasonic Sensor">
+                                    </div>
+                                    <div class="rec-details">
+                                        <h6>Tekelek Ultrasonic LoRa Sensor</h6>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">SKU</span>
+                                            <span class="rec-value">: 7000642</span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Lead Time</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 20 days</span>
+                                        </div>
+                                    </div>
+                                    <div class="rec-pricing">
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Quantity</span>
+                                            <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Recommended Price</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 250 USD</span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Requested Price</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i>: <input type="number" class="form-control form-control-sm d-inline-block price-input" value="300"> USD</span>
+                                        </div>
+                                    </div>
+                                    <div class="rec-actions">
+                                        <button class="btn btn-sm btn-success">Add to Cart</button>
+                                        <button class="btn btn-sm btn-success">Order Now</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tekelek Ultrasonic Long Range LoRa Sensor -->
+                            <div class="recommendation-card">
+                                <div class="rec-card-inner">
+                                    <div class="rec-image">
+                                        <img src="../../assets/Ultrasonic Sensor.png" alt="Ultrasonic Sensor">
+                                    </div>
+                                    <div class="rec-details">
+                                        <h6>Tekelek Ultrasonic Long Range LoRa Sensor</h6>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">SKU</span>
+                                            <span class="rec-value">: 7000644</span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Lead Time</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 20 days</span>
+                                        </div>
+                                    </div>
+                                    <div class="rec-pricing">
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Quantity</span>
+                                            <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Recommended Price</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 320 USD</span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Requested Price</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i>: <input type="number" class="form-control form-control-sm d-inline-block price-input" value="380"> USD</span>
+                                        </div>
+                                    </div>
+                                    <div class="rec-actions">
+                                        <button class="btn btn-sm btn-success">Add to Cart</button>
+                                        <button class="btn btn-sm btn-success">Order Now</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tekelek Radar: Noninvasive Mount -->
+                            <div class="recommendation-card">
+                                <div class="rec-card-inner">
+                                    <div class="rec-image">
+                                        <img src="../../assets/Radar Sensor.png" alt="Radar Sensor">
+                                    </div>
+                                    <div class="rec-details">
+                                        <h6>Tekelek Radar: Noninvasive Mount</h6>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">SKU</span>
+                                            <span class="rec-value">: 7000650</span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Lead Time</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 30 days</span>
+                                        </div>
+                                    </div>
+                                    <div class="rec-pricing">
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Quantity</span>
+                                            <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Recommended Price</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 450 USD</span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Requested Price</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i>: <input type="number" class="form-control form-control-sm d-inline-block price-input" value="520"> USD</span>
+                                        </div>
+                                    </div>
+                                    <div class="rec-actions">
+                                        <button class="btn btn-sm btn-success">Add to Cart</button>
+                                        <button class="btn btn-sm btn-success">Order Now</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tekelek Radar: Invasive Mount -->
+                            <div class="recommendation-card">
+                                <div class="rec-card-inner">
+                                    <div class="rec-image">
+                                        <img src="../../assets/Radar Sensor.png" alt="Radar Sensor">
+                                    </div>
+                                    <div class="rec-details">
+                                        <h6>Tekelek Radar: Invasive Mount</h6>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">SKU</span>
+                                            <span class="rec-value">: 7000651</span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Lead Time</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 30 days</span>
+                                        </div>
+                                    </div>
+                                    <div class="rec-pricing">
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Quantity</span>
+                                            <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Recommended Price</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 480 USD</span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Requested Price</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i>: <input type="number" class="form-control form-control-sm d-inline-block price-input" value="550"> USD</span>
+                                        </div>
+                                    </div>
+                                    <div class="rec-actions">
+                                        <button class="btn btn-sm btn-success">Add to Cart</button>
+                                        <button class="btn btn-sm btn-success">Order Now</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Milesight (APAC/China) -->
+                            <div class="recommendation-card">
+                                <div class="rec-card-inner">
+                                    <div class="rec-image">
+                                        <img src="../../assets/Ultrasonic Sensor.png" alt="Milesight Sensor">
+                                    </div>
+                                    <div class="rec-details">
+                                        <h6>Milesight</h6>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">SKU</span>
+                                            <span class="rec-value">: 7000650</span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Lead Time</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 25 days</span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Note</span>
+                                            <span class="rec-value">: APAC/China region</span>
+                                        </div>
+                                    </div>
+                                    <div class="rec-pricing">
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Quantity</span>
+                                            <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Recommended Price</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i> : 350 USD</span>
+                                        </div>
+                                        <div class="rec-detail-row">
+                                            <span class="rec-label">Requested Price</span>
+                                            <span class="rec-value"><i class="bi bi-info-circle-fill text-muted"></i>: <input type="number" class="form-control form-control-sm d-inline-block price-input" value="420"> USD</span>
+                                        </div>
+                                    </div>
+                                    <div class="rec-actions">
+                                        <button class="btn btn-sm btn-success">Add to Cart</button>
+                                        <button class="btn btn-sm btn-success">Order Now</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div><!-- end recNormalContent -->
+
+                <!-- Bottom Actions for Recommendation -->
+                <div class="bottom-actions" id="recBottomActions">
+                    <button class="btn btn-outline-success btn-back" id="recBackBtn">Back</button>
+                    <div>
+                        <button class="btn btn-success me-2">Add to Cart</button>
+                        <button class="btn btn-success">Order Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="level-sensor.js"></script>
+
+    <!-- Toast for validation -->
+    <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1100;">
+        <div id="validationToast" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Please fill all the required fields
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ackumen - Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <span class="brand-name"><i class="bi bi-gear"></i> Ackumen<sup>™</sup></span>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+        </div>
+        <ul class="sidebar-nav">
+            <li class="nav-item">
+                <a href="#"><i class="bi bi-grid-fill"></i><span>Dashboard</span></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-bar-chart-fill"></i><span>ProcessView</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-gear-fill"></i><span>Customer Setup</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item has-submenu open">
+                <a href="#"><i class="bi bi-star-fill"></i><span>Account Management</span><i class="bi bi-chevron-down ms-auto"></i></a>
+                <ul class="submenu">
+                    <li><a href="#">- Enter Manual Data</a></li>
+                    <li><a href="#">- Connected Labs</a></li>
+                    <li><a href="#">- Connected Planning</a></li>
+                    <li><a href="#">- Plot Data</a></li>
+                    <li><a href="#">- Log Service Requests</a></li>
+                    <li><a href="#">- Log Events</a></li>
+                    <li><a href="#">- Log Insights</a></li>
+                    <li><a href="#">- Alarm Management</a></li>
+                </ul>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-life-preserver"></i><span>Support</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#"><i class="bi bi-person-fill"></i><span>My User Account</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-wrapper">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="header-left">
+                <h5 class="mb-0">Cart</h5>
+            </div>
+            <div class="header-right">
+                <a href="#" class="header-icon"><i class="bi bi-star-fill"></i></a>
+                <a href="#" class="header-icon position-relative">
+                    <i class="bi bi-bell-fill"></i>
+                    <span class="notification-badge">100+</span>
+                </a>
+                <a href="#" class="header-icon position-relative">
+                    <i class="bi bi-cart-fill"></i>
+                    <span class="notification-badge">50</span>
+                </a>
+                <div class="user-avatar">NK</div>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Top Tabs -->
+            <ul class="nav nav-tabs top-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">My Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Recommendations</a>
+                </li>
+            </ul>
+
+            <!-- Cart Content Area -->
+            <div class="cart-content">
+                <!-- Sub Tabs -->
+                <div class="sub-tabs-row">
+                    <ul class="nav sub-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Chemicals</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Equipment <span class="badge bg-danger">2</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Samples</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Select All & Actions -->
+                <div class="cart-toolbar">
+                    <div class="d-flex align-items-center">
+                        <input type="checkbox" class="form-check-input me-2" id="selectAll">
+                        <label for="selectAll" class="form-check-label">Select All / None</label>
+                        <span class="ms-2 text-muted">0 of 2 selected</span>
+                    </div>
+                    <div class="toolbar-actions">
+                        <a class="btn btn-sm btn-success" href="../eo/index.html?source=cart"><i class="bi bi-plus-square-fill me-1"></i>New Order</a>
+                        <button class="btn btn-sm btn-danger">Order</button>
+                    </div>
+                </div>
+
+                <!-- Search -->
+                <div class="cart-search">
+                    <i class="bi bi-search"></i>
+                </div>
+
+                <!-- List View Toggle -->
+                <div class="d-flex justify-content-end mb-2">
+                    <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-list"></i></button>
+                </div>
+
+                <!-- Cart Table -->
+                <table class="table table-bordered cart-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 40px;">Equipment</th>
+                            <th>Equipment Name <i class="bi bi-info-circle-fill text-muted"></i></th>
+                            <th>Purchase Type <i class="bi bi-info-circle-fill text-muted"></i></th>
+                            <th>Material Code/ Description <i class="bi bi-info-circle-fill text-muted"></i></th>
+                            <th>Recommended Price <i class="bi bi-info-circle-fill text-muted"></i></th>
+                            <th>Requested Price <i class="bi bi-info-circle-fill text-muted"></i></th>
+                            <th>Quantity</th>
+                            <th>Billing Type <i class="bi bi-info-circle-fill text-muted"></i></th>
+                            <th>Requested Delivery Date <i class="bi bi-info-circle-fill text-muted"></i></th>
+                            <th>Comments</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Location Group Header -->
+                        <tr class="location-header">
+                            <td colspan="11">
+                                <i class="bi bi-chevron-down me-2"></i>GP Brewton AL(US)
+                            </td>
+                        </tr>
+                        <!-- Item 1 -->
+                        <tr>
+                            <td class="text-center"><input type="checkbox" class="form-check-input"></td>
+                            <td><a href="#" class="equipment-link">Diaphragm Dosing</a></td>
+                            <td>
+                                <select class="form-select form-select-sm purchase-type-select">
+                                    <option selected>Resale</option>
+                                </select>
+                            </td>
+                            <td>7000642</td>
+                            <td>10000 USD</td>
+                            <td>10000 USD</td>
+                            <td><input type="number" class="form-control form-control-sm qty-input" value="1"></td>
+                            <td>
+                                <select class="form-select form-select-sm billing-select">
+                                    <option selected>Standard</option>
+                                </select>
+                            </td>
+                            <td>
+                                <span class="date-value">10/25/2026</span>
+                                <i class="bi bi-calendar-fill ms-1"></i>
+                            </td>
+                            <td><button class="btn btn-sm btn-outline-secondary comment-btn">Enter Comments</button></td>
+                            <td class="text-center"><i class="bi bi-trash-fill text-danger action-delete"></i></td>
+                        </tr>
+                        <!-- Item 2 -->
+                        <tr>
+                            <td class="text-center"><input type="checkbox" class="form-check-input"></td>
+                            <td>Peristaltic Pump with 100 HP</td>
+                            <td>
+                                <select class="form-select form-select-sm purchase-type-select">
+                                    <option selected>Resale</option>
+                                </select>
+                            </td>
+                            <td>Pump</td>
+                            <td>10000 USD</td>
+                            <td>10000 USD</td>
+                            <td><input type="number" class="form-control form-control-sm qty-input" value="1"></td>
+                            <td>
+                                <select class="form-select form-select-sm billing-select">
+                                    <option selected>Standard</option>
+                                </select>
+                            </td>
+                            <td>
+                                <span class="date-value">10/25/2026</span>
+                                <i class="bi bi-calendar-fill ms-1"></i>
+                            </td>
+                            <td><button class="btn btn-sm btn-outline-secondary comment-btn">Enter Comments</button></td>
+                            <td class="text-center"><i class="bi bi-trash-fill text-danger action-delete"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Empty space area (mimics the gray box in the image) -->
+                <div class="empty-area"></div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="page-footer">
+            <div class="footer-left">
+                <span>Powered By</span>
+                <img src="../../assets/buckman-logo.png" alt="Buckman" class="footer-logo">
+            </div>
+            <div class="footer-right">
+                <a href="#">End User License Agreement</a>
+                <span class="separator">|</span>
+                <a href="#">Privacy Policy</a>
+                <span class="separator">|</span>
+                <a href="#">Contact Sup...</a>
+            </div>
+            <div class="footer-bottom">
+                <span class="version-text">Version : 1.12.65</span>
+                <span>&copy; 2022 buckman. All Rights Reserved</span>
+            </div>
+        </footer>
+
+        <!-- Chat FAB -->
+        <div class="chat-fab">
+            <i class="bi bi-chat-dots-fill"></i>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html>
