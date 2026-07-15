@@ -284,8 +284,20 @@ function validateRequiredFields() {
     const salesOrgVal = document.getElementById('salesOrg').value;
     const heightVal = containerHeightInput.value.trim();
     const productStoredVal = productStored.value;
+    const cellularCoverageSelected = document.querySelector('input[name="cellularCoverage"]:checked');
+    const gatewayInstalledSelected = document.querySelector('input[name="gatewayInstalled"]:checked');
+    const containerIsolatedSelected = document.querySelector('input[name="containerIsolated"]:checked');
 
-    if (!customerLocationVal || !purchaseTypeVal || !salesOrgVal || !heightVal || !productStoredVal) {
+    if (
+        !customerLocationVal ||
+        !purchaseTypeVal ||
+        !salesOrgVal ||
+        !heightVal ||
+        !productStoredVal ||
+        !cellularCoverageSelected ||
+        !gatewayInstalledSelected ||
+        !containerIsolatedSelected
+    ) {
         return false;
     }
     return true;

@@ -126,7 +126,7 @@
                                 <label class="form-label-custom">Is there cellular coverage? <span class="required">*</span> <i class="bi bi-info-circle-fill text-muted info-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cellular coverage is required for both the radar and ultrasonic level sensor options. For ultrasonic sensors, a gateway is used. For radar sensors, no gateway is required as the devices have a cellular modem embedded in the sensor. If there is no cellular coverage where the sensor will be installed, and the gateway (if applicable) cannot be moved to a location where there is suitable coverage, please consult your CSE team for alternate options."></i></label>
                                 <div class="radio-group">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="cellularCoverage" id="cellularYes" checked>
+                                        <input class="form-check-input" type="radio" name="cellularCoverage" id="cellularYes">
                                         <label class="form-check-label" for="cellularYes">Yes</label>
                                     </div>
                                     <div class="form-check form-check-inline">
@@ -140,7 +140,7 @@
                                 <label class="form-label-custom">Is a gateway already installed on-site? <span class="required">*</span> <i class="bi bi-info-circle-fill text-muted info-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Gateway must be located where cell coverage exists without significant objects between sensor and gateway, such as thick concrete walls. Line of sight between gateway and sensor is preferred."></i></label>
                                 <div class="radio-group">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gatewayInstalled" id="gatewayYes" checked>
+                                        <input class="form-check-input" type="radio" name="gatewayInstalled" id="gatewayYes">
                                         <label class="form-check-label" for="gatewayYes">Yes</label>
                                     </div>
                                     <div class="form-check form-check-inline">
@@ -192,7 +192,7 @@
                                 <label class="form-label-custom">Is the container isolated? <span class="required">*</span> <i class="bi bi-info-circle-fill text-muted info-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="With no other containers close by that need level monitoring now or in the future"></i></label>
                                 <div class="radio-group">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="containerIsolated" id="isolatedYes" checked>
+                                        <input class="form-check-input" type="radio" name="containerIsolated" id="isolatedYes">
                                         <label class="form-check-label" for="isolatedYes">Yes</label>
                                     </div>
                                     <div class="form-check form-check-inline">
@@ -244,7 +244,7 @@
                                 <label class="form-label-custom">Is it a detergent or surfactant? <i class="bi bi-info-circle-fill text-muted info-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="The product is likely to foam"></i></label>
                                 <div class="radio-group">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="detergent" id="detergentYes" checked>
+                                        <input class="form-check-input" type="radio" name="detergent" id="detergentYes">
                                         <label class="form-check-label" for="detergentYes">Yes</label>
                                     </div>
                                     <div class="form-check form-check-inline">
@@ -258,7 +258,7 @@
                                 <label class="form-label-custom">Is it an oxidizer?</label>
                                 <div class="radio-group">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="oxidizer" id="oxidizerYes" checked>
+                                        <input class="form-check-input" type="radio" name="oxidizer" id="oxidizerYes">
                                         <label class="form-check-label" for="oxidizerYes">Yes</label>
                                     </div>
                                     <div class="form-check form-check-inline">
@@ -272,7 +272,7 @@
                                 <label class="form-label-custom">Is it classified as vapor producing/fuming?</label>
                                 <div class="radio-group">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="vaporProducing" id="vaporYes" checked>
+                                        <input class="form-check-input" type="radio" name="vaporProducing" id="vaporYes">
                                         <label class="form-check-label" for="vaporYes">Yes</label>
                                     </div>
                                     <div class="form-check form-check-inline">
@@ -286,7 +286,7 @@
                                 <label class="form-label-custom">Is the chemical corrosive?</label>
                                 <div class="radio-group">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="corrosive" id="corrosiveYes" checked>
+                                        <input class="form-check-input" type="radio" name="corrosive" id="corrosiveYes">
                                         <label class="form-check-label" for="corrosiveYes">Yes</label>
                                     </div>
                                     <div class="form-check form-check-inline">
@@ -436,7 +436,7 @@
                                     <div class="rec-pricing">
                                         <div class="rec-detail-row">
                                             <span class="rec-label">Quantity</span>
-                                            <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                            <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="0"></span>
                                         </div>
                                         <div class="rec-detail-row">
                                             <span class="rec-label">Recommended Price</span>
@@ -474,7 +474,7 @@
                                     <div class="rec-pricing">
                                         <div class="rec-detail-row">
                                             <span class="rec-label">Quantity</span>
-                                            <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                            <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="0"></span>
                                         </div>
                                         <div class="rec-detail-row">
                                             <span class="rec-label">Recommended Price</span>
@@ -512,7 +512,7 @@
                                     <div class="rec-pricing">
                                         <div class="rec-detail-row">
                                             <span class="rec-label">Quantity</span>
-                                            <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                            <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="0"></span>
                                         </div>
                                         <div class="rec-detail-row">
                                             <span class="rec-label">Recommended Price</span>
@@ -550,7 +550,7 @@
                                     <div class="rec-pricing">
                                         <div class="rec-detail-row">
                                             <span class="rec-label">Quantity</span>
-                                            <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                            <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="0"></span>
                                         </div>
                                         <div class="rec-detail-row">
                                             <span class="rec-label">Recommended Price</span>
@@ -588,7 +588,7 @@
                                     <div class="rec-pricing">
                                         <div class="rec-detail-row">
                                             <span class="rec-label">Quantity</span>
-                                            <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="1"></span>
+                                            <span class="rec-value">: <input type="number" class="form-control form-control-sm d-inline-block quantity-input" value="0"></span>
                                         </div>
                                         <div class="rec-detail-row">
                                             <span class="rec-label">Recommended Price</span>
