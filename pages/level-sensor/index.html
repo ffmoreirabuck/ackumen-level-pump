@@ -123,6 +123,15 @@
                             </div>
 
                             <div class="form-group-custom">
+                                <label class="form-label-custom">How often is data required to be updated in Ackumen? <span class="required">*</span> <i class="bi bi-info-circle-fill text-muted info-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ultrasonic sensors are able to send data to Ackumen every hour. Radar sensors can measure data every hour, but cannot send data to Ackumen more frequently than every 6 hours because the battery will be drained rapidly."></i></label>
+                                <select class="form-select" id="ackumenDataUpdateFrequency" required>
+                                    <option selected value="">Select...</option>
+                                    <option value="every-hour">Every hour</option>
+                                    <option value="every-6-hours">Every 6 hours</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
                                 <label class="form-label-custom">Is there cellular coverage? <span class="required">*</span> <i class="bi bi-info-circle-fill text-muted info-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cellular coverage is required for both the radar and ultrasonic level sensor options. For ultrasonic sensors, a gateway is used. For radar sensors, no gateway is required as the devices have a cellular modem embedded in the sensor. If there is no cellular coverage where the sensor will be installed, and the gateway (if applicable) cannot be moved to a location where there is suitable coverage, please consult your CSE team for alternate options."></i></label>
                                 <div class="radio-group">
                                     <div class="form-check form-check-inline">
@@ -572,7 +581,7 @@
                             <div class="recommendation-card">
                                 <div class="rec-card-inner">
                                     <div class="rec-image">
-                                        <img src="../../assets/Ultrasonic Sensor.png" alt="Milesight Sensor">
+                                        <img src="../../assets/Milesight.jpg" alt="Milesight Sensor">
                                     </div>
                                     <div class="rec-details">
                                         <h6>Milesight</h6>

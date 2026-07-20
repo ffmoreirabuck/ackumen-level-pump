@@ -208,7 +208,13 @@ const sensorCatalog = {
 
 // Decision tree logic (based on Level Sensor Picker flowchart)
 function getRecommendation() {
+    const DATA_FREQUENCY = {
+        HOUR: "every-hour",
+        SIX_HOURS: "every-6-hours",
+    }
+
     const height = parseFloat(containerHeightInput.value) || 0;
+    const ackumenDataUpdateFrequency = document.getElementById('ackumenDataUpdateFrequency').value;
     const cellularCoverage = document.getElementById('cellularYes').checked;
     const gatewayInstalled = document.getElementById('gatewayYes').checked;
     const containerIsolated = document.getElementById('isolatedYes').checked;
@@ -237,40 +243,45 @@ function getRecommendation() {
         return 'Milesight';
     }
 
-    if (cellularCoverage) {
-        if (height > 26) {
-            return "Work with CSE team, custom sensor required"
+    if (ackumenDataUpdateFrequency === DATA_FREQUENCY.HOUR) {
+        const complement = gatewayInstalled ? "" : " with MT Gateway";
+        if (height > 6) {
+            return "Tekelek Ultrasonic Long Range LoRa Sensor" + complement;
         }
-        else {
+        return "Tekelek Ultrasonic LoRa Sensor" + complement;
+
+    } else if (ackumenDataUpdateFrequency === DATA_FREQUENCY.SIX_HOURS) {
+        if (cellularCoverage) {
+            if (height > 26) {
+                return "Work with CSE team, custom sensor required";
+            }
             if (height > 22) {
-                const comlement = gatewayInstalled ? "" : " with MT Gateway"
-                return "Tekelek Ultrasonic Long Range LoRa Sensor" + comlement;
+                const complement = gatewayInstalled ? "" : " with MT Gateway";
+                return "Tekelek Ultrasonic Long Range LoRa Sensor" + complement;
             }
-            else {
-                if (containerIsolated) {
-                    if (height > 6) return "Tekelek Radar: Invasive Mount";
-                    else return "Tekelek Radar: Noninvasive Mount";
-                }
-                else {
-                    if (isChemicalProblematic) {
-                        if (height > 6) return "Tekelek Radar: Invasive Mount";
-                        else return "Tekelek Radar: Noninvasive Mount";
-                    }
-                    else {
-                        const comlement = gatewayInstalled ? "" : " with MT Gateway"
-                        return "Tekelek Ultrasonic Long Range LoRa Sensor" + comlement;
-                    }
-                }
+            if (containerIsolated) {
+                if (height > 6) return "Tekelek Radar: Invasive Mount";
+                else return "Tekelek Radar: Noninvasive Mount";
             }
-        }
-    }
-    else {
-        if (height > 26) {
-            return "Work with CSE team, custom sensor required"
-        }
-        else {
-            const comlement = gatewayInstalled ? "" : " with MT Gateway"
-            return "Tekelek Ultrasonic Long Range LoRa Sensor" + comlement;
+            if (isChemicalProblematic) {
+                if (height > 6) return "Tekelek Radar: Invasive Mount";
+                else return "Tekelek Radar: Noninvasive Mount";
+            }
+            const complement = gatewayInstalled ? "" : " with MT Gateway";
+            if (height > 6) {
+                return "Tekelek Ultrasonic Long Range LoRa Sensor" + complement;
+            }
+            return "Tekelek Ultrasonic LoRa Sensor" + complement;
+        } else {
+            if (height > 26) {
+                return "Work with CSE team, custom sensor required";
+            } else {
+                const complement = gatewayInstalled ? "" : " with MT Gateway";
+                if (height > 6) {
+                    return "Tekelek Ultrasonic Long Range LoRa Sensor" + complement;
+                }
+                return "Tekelek Ultrasonic LoRa Sensor" + complement;
+            }
         }
     }
 }
@@ -282,6 +293,7 @@ function validateRequiredFields() {
     const customerLocationVal = document.getElementById('customerLocation').value;
     const purchaseTypeVal = document.getElementById('purchaseType').value;
     const salesOrgVal = document.getElementById('salesOrg').value;
+    const ackumenDataUpdateFrequencyVal = document.getElementById('ackumenDataUpdateFrequency').value;
     const heightVal = containerHeightInput.value.trim();
     const productStoredVal = productStored.value;
     const cellularCoverageSelected = document.querySelector('input[name="cellularCoverage"]:checked');
@@ -292,6 +304,7 @@ function validateRequiredFields() {
         !customerLocationVal ||
         !purchaseTypeVal ||
         !salesOrgVal ||
+        !ackumenDataUpdateFrequencyVal ||
         !heightVal ||
         !productStoredVal ||
         !cellularCoverageSelected ||
