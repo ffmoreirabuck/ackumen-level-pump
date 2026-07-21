@@ -316,6 +316,73 @@ function validateRequiredFields() {
     return true;
 }
 
+// Add billing type radios to each product card and toggle monthly suffix.
+function setupBillingTypeControls() {
+    document.querySelectorAll('.recommendation-card .rec-pricing').forEach(function (pricingBlock, index) {
+        const recommendedPriceRow = Array.from(pricingBlock.querySelectorAll('.rec-detail-row')).find(function (row) {
+            const label = row.querySelector('.rec-label');
+            return label && label.textContent.trim() === 'Recommended Price';
+        });
+
+        if (!recommendedPriceRow) {
+            return;
+        }
+
+        const recommendedValue = recommendedPriceRow.querySelector('.rec-value');
+        if (!recommendedValue) {
+            return;
+        }
+
+        let pricePeriod = recommendedValue.querySelector('.price-period');
+        if (!pricePeriod) {
+            pricePeriod = document.createElement('span');
+            pricePeriod.className = 'price-period';
+            pricePeriod.style.display = 'none';
+            pricePeriod.textContent = ' /month';
+            recommendedValue.appendChild(pricePeriod);
+        }
+
+        let billingRow = pricingBlock.querySelector('.billing-type-row');
+        if (!billingRow) {
+            const radioName = 'billingType' + (index + 1);
+            billingRow = document.createElement('div');
+            billingRow.className = 'rec-detail-row billing-type-row';
+            billingRow.innerHTML =
+                '<span class="rec-label">Billing Type</span>' +
+                '<div class="rec-value billing-type-value">' +
+                '<span class="value-separator">:</span>' +
+                '<label class="form-check form-check-inline billing-option">' +
+                '<input class="form-check-input billing-type-radio" type="radio" name="' + radioName + '" value="standard" checked>' +
+                '<span class="form-check-label">Standard</span>' +
+                '</label>' +
+                '<label class="form-check form-check-inline billing-option">' +
+                '<input class="form-check-input billing-type-radio" type="radio" name="' + radioName + '" value="subscription">' +
+                '<span class="form-check-label">Subscription</span>' +
+                '</label>' +
+                '</div>';
+            recommendedPriceRow.insertAdjacentElement('afterend', billingRow);
+        }
+
+        const standardRadio = billingRow.querySelector('input[value="standard"]');
+        const subscriptionRadio = billingRow.querySelector('input[value="subscription"]');
+
+        const updatePricePeriod = function () {
+            pricePeriod.style.display = subscriptionRadio && subscriptionRadio.checked ? 'inline' : 'none';
+        };
+
+        if (standardRadio) {
+            standardRadio.addEventListener('change', updatePricePeriod);
+        }
+        if (subscriptionRadio) {
+            subscriptionRadio.addEventListener('change', updatePricePeriod);
+        }
+
+        updatePricePeriod();
+    });
+}
+
+setupBillingTypeControls();
+
 // Continue button logic
 document.getElementById('continueBtn').addEventListener('click', function () {
     // Validate required fields
@@ -355,7 +422,6 @@ document.getElementById('continueBtn').addEventListener('click', function () {
         document.getElementById('recEquipPrice').textContent = sensor.price;
         document.getElementById('recEquipImage').src = sensor.image;
         document.getElementById('recEquipImage').style.display = 'block';
-        document.getElementById('recEquipRequestedPrice').value = Math.round(sensor.price * 1.2);
         document.getElementById('recommendedEquipmentTitle').textContent = 'Recommended Equipment (1)';
 
         // Show/hide accessories (MT Gateway)

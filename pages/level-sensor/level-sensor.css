@@ -427,6 +427,49 @@ body {
     gap: 4px;
 }
 
+.billing-type-row .rec-value {
+    gap: 12px;
+}
+
+.billing-type-row {
+    align-items: center;
+}
+
+.billing-type-row .rec-label {
+    display: flex;
+    align-items: center;
+}
+
+.billing-type-row .billing-type-value {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.billing-type-row .value-separator {
+    line-height: 1;
+}
+
+.billing-type-row .form-check {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 0;
+    min-height: auto;
+    padding-left: 0;
+    gap: 6px;
+}
+
+.billing-type-row .form-check-input {
+    float: none;
+    margin-top: 0;
+    margin-left: 0;
+}
+
+.billing-type-row .form-check-label {
+    margin-bottom: 0;
+    line-height: 1.2;
+}
+
 .rec-pricing {
     flex: 1;
 }
