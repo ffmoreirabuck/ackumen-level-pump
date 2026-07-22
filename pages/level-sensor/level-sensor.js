@@ -79,26 +79,54 @@ if (source === 'stp') {
     });
 }
 
-// Container toggle logic
-const containerToggle = document.getElementById('containerToggle');
+// Container configuration logic (process view configured: yes/no)
+const containerConfiguredYes = document.getElementById('containerConfiguredYes');
+const containerConfiguredNo = document.getElementById('containerConfiguredNo');
 const selectContainer = document.getElementById('selectContainer');
 const containerHeightInput = document.getElementById('containerHeightInput');
 const containerHeightUnit = document.getElementById('containerHeightUnit');
 const productStored = document.getElementById('productStored');
 
-containerToggle.addEventListener('change', function () {
-    if (this.checked) {
+function applyContainerConfiguredFlow(useProcessViewConfig) {
+    if (useProcessViewConfig) {
+        selectContainer.classList.remove('d-none');
         selectContainer.disabled = false;
         containerHeightInput.disabled = true;
         containerHeightUnit.disabled = true;
         productStored.disabled = true;
+
+        // Do not force a default container; user must choose one.
+        if (!selectContainer.value) {
+            containerHeightInput.value = '';
+            productStored.value = '';
+            populateProductSettings(null);
+        }
     } else {
+        selectContainer.classList.add('d-none');
         selectContainer.disabled = true;
+        selectContainer.value = '';
         containerHeightInput.disabled = false;
         containerHeightUnit.disabled = false;
         productStored.disabled = false;
     }
-});
+}
+
+if (containerConfiguredYes && containerConfiguredNo) {
+    containerConfiguredYes.addEventListener('change', function () {
+        if (this.checked) {
+            applyContainerConfiguredFlow(true);
+        }
+    });
+
+    containerConfiguredNo.addEventListener('change', function () {
+        if (this.checked) {
+            applyContainerConfiguredFlow(false);
+        }
+    });
+
+    // Default state is "No" as set in HTML.
+    applyContainerConfiguredFlow(containerConfiguredYes.checked);
+}
 
 // Product data
 const productData = {
@@ -146,30 +174,19 @@ function populateProductSettings(productKey) {
         document.getElementById('viscosity').value = product.viscosity;
         document.getElementById('vaporPressure').value = product.vaporPressure;
 
-        document.getElementById('detergentYes').checked = product.detergent;
-        document.getElementById('detergentNo').checked = !product.detergent;
-
-        document.getElementById('oxidizerYes').checked = product.oxidizer;
-        document.getElementById('oxidizerNo').checked = !product.oxidizer;
-
-        document.getElementById('vaporYes').checked = product.vaporProducing;
-        document.getElementById('vaporNo').checked = !product.vaporProducing;
-
-        document.getElementById('corrosiveYes').checked = product.corrosive;
-        document.getElementById('corrosiveNo').checked = !product.corrosive;
+        const hasAnyProductCharacteristic = product.detergent ||
+            product.oxidizer ||
+            product.vaporProducing ||
+            product.corrosive;
+        document.getElementById('productPropertiesYes').checked = hasAnyProductCharacteristic;
+        document.getElementById('productPropertiesNo').checked = !hasAnyProductCharacteristic;
     } else {
         document.getElementById('boilingPoint').value = '';
         document.getElementById('viscosity').value = '';
         document.getElementById('vaporPressure').value = '';
 
-        document.getElementById('detergentYes').checked = true;
-        document.getElementById('detergentNo').checked = false;
-        document.getElementById('oxidizerYes').checked = true;
-        document.getElementById('oxidizerNo').checked = false;
-        document.getElementById('vaporYes').checked = true;
-        document.getElementById('vaporNo').checked = false;
-        document.getElementById('corrosiveYes').checked = true;
-        document.getElementById('corrosiveNo').checked = false;
+        document.getElementById('productPropertiesYes').checked = false;
+        document.getElementById('productPropertiesNo').checked = true;
     }
 }
 
@@ -222,17 +239,11 @@ function getRecommendation() {
     const boilingPoint = parseFloat(document.getElementById('boilingPoint').value) || null;
     const viscosity = parseFloat(document.getElementById('viscosity').value) || 0;
     const vaporPressure = parseFloat(document.getElementById('vaporPressure').value) || 0;
-    const isCorrosive = document.getElementById('corrosiveYes').checked;
-    const isVaporProducing = document.getElementById('vaporYes').checked;
-    const isDetergent = document.getElementById('detergentYes').checked;
-    const isOxidizer = document.getElementById('oxidizerYes').checked;
+    const hasAnyProductCharacteristic = document.getElementById('productPropertiesYes').checked;
 
-    const isChemicalProblematic = isCorrosive ||
+    const isChemicalProblematic = hasAnyProductCharacteristic ||
         (vaporPressure > 10) ||
         (boilingPoint !== null && boilingPoint < 85) ||
-        isVaporProducing ||
-        isDetergent ||
-        isOxidizer ||
         (viscosity >= 1000);
 
     const currentSalesOrg = document.getElementById('salesOrg').value;
@@ -319,30 +330,26 @@ function validateRequiredFields() {
 // Add billing type radios to each product card and toggle monthly suffix.
 function setupBillingTypeControls() {
     document.querySelectorAll('.recommendation-card .rec-pricing').forEach(function (pricingBlock, index) {
+        const card = pricingBlock.closest('.recommendation-card');
+        const productNameEl = card ? card.querySelector('.rec-details h6') : null;
+        const productName = productNameEl ? productNameEl.textContent.trim() : '';
+        const isTekelek = /^Tekelek\b/i.test(productName);
+
         const recommendedPriceRow = Array.from(pricingBlock.querySelectorAll('.rec-detail-row')).find(function (row) {
             const label = row.querySelector('.rec-label');
             return label && label.textContent.trim() === 'Recommended Price';
         });
 
-        if (!recommendedPriceRow) {
-            return;
-        }
-
-        const recommendedValue = recommendedPriceRow.querySelector('.rec-value');
-        if (!recommendedValue) {
-            return;
-        }
-
-        let pricePeriod = recommendedValue.querySelector('.price-period');
-        if (!pricePeriod) {
-            pricePeriod = document.createElement('span');
-            pricePeriod.className = 'price-period';
-            pricePeriod.style.display = 'none';
-            pricePeriod.textContent = ' /month';
-            recommendedValue.appendChild(pricePeriod);
-        }
-
         let billingRow = pricingBlock.querySelector('.billing-type-row');
+        if (!recommendedPriceRow && !billingRow) {
+            return;
+        }
+
+        const recommendedValue = recommendedPriceRow ? recommendedPriceRow.querySelector('.rec-value') : null;
+        if (recommendedPriceRow && !recommendedValue) {
+            return;
+        }
+
         if (!billingRow) {
             const radioName = 'billingType' + (index + 1);
             billingRow = document.createElement('div');
@@ -351,30 +358,104 @@ function setupBillingTypeControls() {
                 '<span class="rec-label">Billing Type</span>' +
                 '<div class="rec-value billing-type-value">' +
                 '<span class="value-separator">:</span>' +
-                '<label class="form-check form-check-inline billing-option">' +
+                '<div class="billing-options-stack">' +
+                '<label class="form-check billing-option">' +
                 '<input class="form-check-input billing-type-radio" type="radio" name="' + radioName + '" value="standard" checked>' +
                 '<span class="form-check-label">Standard</span>' +
                 '</label>' +
-                '<label class="form-check form-check-inline billing-option">' +
+                '<label class="form-check billing-option">' +
                 '<input class="form-check-input billing-type-radio" type="radio" name="' + radioName + '" value="subscription">' +
                 '<span class="form-check-label">Subscription</span>' +
                 '</label>' +
+                '</div>' +
+                '<div class="recommended-price-inline">' +
+                '<span class="inline-label">Recommended Price</span>' +
+                '<span class="inline-separator">:</span>' +
+                '<span class="inline-value"></span>' +
+                '</div>' +
                 '</div>';
-            recommendedPriceRow.insertAdjacentElement('afterend', billingRow);
+            recommendedPriceRow.insertAdjacentElement('beforebegin', billingRow);
+        }
+
+        const inlinePriceValue = billingRow.querySelector('.inline-value');
+        if (recommendedValue && inlinePriceValue && !inlinePriceValue.hasChildNodes()) {
+            while (recommendedValue.firstChild) {
+                inlinePriceValue.appendChild(recommendedValue.firstChild);
+            }
+        }
+
+        if (recommendedPriceRow && recommendedPriceRow.parentNode) {
+            recommendedPriceRow.remove();
+        }
+
+        if (!inlinePriceValue) {
+            return;
+        }
+
+        const hadDynamicPriceId = !!inlinePriceValue.querySelector('#recEquipPrice');
+        const currentPriceFromId = inlinePriceValue.querySelector('#recEquipPrice');
+        const parsedPriceFromText = (inlinePriceValue.textContent.match(/\d+(?:\.\d+)?/) || [null])[0];
+        const currentPrice = currentPriceFromId
+            ? parseFloat(currentPriceFromId.textContent)
+            : (parsedPriceFromText ? parseFloat(parsedPriceFromText) : 0);
+
+        const infoIcon = inlinePriceValue.querySelector('i.bi-info-circle-fill');
+        inlinePriceValue.innerHTML = '';
+        if (infoIcon) {
+            inlinePriceValue.appendChild(infoIcon);
+            inlinePriceValue.appendChild(document.createTextNode(' : '));
+        }
+
+        const amountSpan = document.createElement('span');
+        amountSpan.className = 'billing-price-amount';
+        if (hadDynamicPriceId) {
+            amountSpan.id = 'recEquipPrice';
+        }
+        amountSpan.textContent = Number.isFinite(currentPrice) ? String(currentPrice) : '0';
+        inlinePriceValue.appendChild(amountSpan);
+        inlinePriceValue.appendChild(document.createTextNode(' USD'));
+
+        let pricePeriod = inlinePriceValue.querySelector('.price-period');
+        if (!pricePeriod) {
+            pricePeriod = document.createElement('span');
+            pricePeriod.className = 'price-period';
+            pricePeriod.textContent = ' /month';
+            inlinePriceValue.appendChild(pricePeriod);
         }
 
         const standardRadio = billingRow.querySelector('input[value="standard"]');
         const subscriptionRadio = billingRow.querySelector('input[value="subscription"]');
 
+        billingRow.dataset.standardPrice = isTekelek ? '450' : String(currentPrice);
+        billingRow.dataset.subscriptionPrice = isTekelek ? '60' : String(currentPrice);
+
         const updatePricePeriod = function () {
-            pricePeriod.style.display = subscriptionRadio && subscriptionRadio.checked ? 'inline' : 'none';
+            const standardPrice = parseFloat(billingRow.dataset.standardPrice || '0');
+            const subscriptionPrice = parseFloat(billingRow.dataset.subscriptionPrice || '0');
+            const isSubscription = subscriptionRadio && subscriptionRadio.checked;
+
+            amountSpan.textContent = String(isSubscription ? subscriptionPrice : standardPrice);
+            pricePeriod.style.display = isSubscription ? 'inline' : 'none';
         };
 
         if (standardRadio) {
-            standardRadio.addEventListener('change', updatePricePeriod);
+            standardRadio.onchange = updatePricePeriod;
         }
         if (subscriptionRadio) {
-            subscriptionRadio.addEventListener('change', updatePricePeriod);
+            subscriptionRadio.onchange = updatePricePeriod;
+        }
+
+        if (isTekelek) {
+            if (subscriptionRadio) {
+                subscriptionRadio.checked = true;
+            }
+            if (standardRadio) {
+                standardRadio.checked = false;
+            }
+        } else {
+            if (standardRadio && subscriptionRadio && !standardRadio.checked && !subscriptionRadio.checked) {
+                standardRadio.checked = true;
+            }
         }
 
         updatePricePeriod();
@@ -423,6 +504,9 @@ document.getElementById('continueBtn').addEventListener('click', function () {
         document.getElementById('recEquipImage').src = sensor.image;
         document.getElementById('recEquipImage').style.display = 'block';
         document.getElementById('recommendedEquipmentTitle').textContent = 'Recommended Equipment (1)';
+
+        // Re-apply billing defaults/prices because recommended card can change by selection.
+        setupBillingTypeControls();
 
         // Show/hide accessories (MT Gateway)
         if (sensor.needsGateway) {

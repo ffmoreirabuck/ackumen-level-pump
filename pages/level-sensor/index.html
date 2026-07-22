@@ -146,7 +146,7 @@
                             </div>
 
                             <div class="form-group-custom">
-                                <label class="form-label-custom">Is a gateway already installed on-site? <span class="required">*</span> <i class="bi bi-info-circle-fill text-muted info-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Gateway must be located where cell coverage exists without significant objects between sensor and gateway, such as thick concrete walls. Line of sight between gateway and sensor is preferred."></i></label>
+                                <label class="form-label-custom">Is a gateway already installed and within an accessible distance to the tank? <span class="required">*</span> <i class="bi bi-info-circle-fill text-muted info-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Gateway must be located where cell coverage exists without significant objects between sensor and gateway, such as thick concrete walls. Line of sight between gateway and sensor is preferred."></i></label>
                                 <div class="radio-group">
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="gatewayInstalled" id="gatewayYes">
@@ -167,8 +167,18 @@
                             <h6 class="section-title text-success">Container Settings</h6>
 
                             <div class="form-group-custom">
-                                <label class="form-label-custom">Select Container <div class="form-check form-switch d-inline-block ms-1 me-1 align-middle"><input class="form-check-input" type="checkbox" id="containerToggle"></div> <i class="bi bi-info-circle-fill text-muted info-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Get process view configured container information"></i></label>
-                                <select class="form-select" id="selectContainer" disabled>
+                                <label class="form-label-custom">Is container already configured in process view? <i class="bi bi-info-circle-fill text-muted info-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Get process view configured container information to fill data."></i></label>
+                                <div class="radio-group">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="containerConfigured" id="containerConfiguredYes">
+                                        <label class="form-check-label" for="containerConfiguredYes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="containerConfigured" id="containerConfiguredNo" checked>
+                                        <label class="form-check-label" for="containerConfiguredNo">No</label>
+                                    </div>
+                                </div>
+                                <select class="form-select d-none" id="selectContainer" disabled>
                                     <option selected value="">Select...</option>
                                     <option value="container1">Container Configuration 1</option>
                                     <option value="container2">Container Configuration 2</option>
@@ -188,7 +198,7 @@
                             </div>
 
                             <div class="form-group-custom">
-                                <label class="form-label-custom">Product Stored <span class="required">*</span></label>
+                                <label class="form-label-custom">Chemical Product <span class="required">*</span></label>
                                 <select class="form-select" id="productStored">
                                     <option selected value="">Select...</option>
                                     <option value="product1">Product 1</option>
@@ -250,57 +260,15 @@
                             </div>
 
                             <div class="form-group-custom">
-                                <label class="form-label-custom">Is it a detergent or surfactant? <i class="bi bi-info-circle-fill text-muted info-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="The product is likely to foam"></i></label>
+                                <label class="form-label-custom">Does the product have any of these characteristics: detergent/surfactant, oxidizer, vapor producing/fuming, or corrosive? <i class="bi bi-info-circle-fill text-muted info-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Detergent/surfactant products are likely to foam. Oxidizer, vapor-producing/fuming, and corrosive products can interfere with sensing performance."></i></label>
                                 <div class="radio-group">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="detergent" id="detergentYes">
-                                        <label class="form-check-label" for="detergentYes">Yes</label>
+                                        <input class="form-check-input" type="radio" name="productProperties" id="productPropertiesYes">
+                                        <label class="form-check-label" for="productPropertiesYes">Yes</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="detergent" id="detergentNo">
-                                        <label class="form-check-label" for="detergentNo">No</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group-custom">
-                                <label class="form-label-custom">Is it an oxidizer?</label>
-                                <div class="radio-group">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="oxidizer" id="oxidizerYes">
-                                        <label class="form-check-label" for="oxidizerYes">Yes</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="oxidizer" id="oxidizerNo">
-                                        <label class="form-check-label" for="oxidizerNo">No</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group-custom">
-                                <label class="form-label-custom">Is it classified as vapor producing/fuming?</label>
-                                <div class="radio-group">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="vaporProducing" id="vaporYes">
-                                        <label class="form-check-label" for="vaporYes">Yes</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="vaporProducing" id="vaporNo">
-                                        <label class="form-check-label" for="vaporNo">No</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group-custom">
-                                <label class="form-label-custom">Is the chemical corrosive?</label>
-                                <div class="radio-group">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="corrosive" id="corrosiveYes">
-                                        <label class="form-check-label" for="corrosiveYes">Yes</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="corrosive" id="corrosiveNo">
-                                        <label class="form-check-label" for="corrosiveNo">No</label>
+                                        <input class="form-check-input" type="radio" name="productProperties" id="productPropertiesNo">
+                                        <label class="form-check-label" for="productPropertiesNo">No</label>
                                     </div>
                                 </div>
                             </div>

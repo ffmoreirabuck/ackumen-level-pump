@@ -444,6 +444,13 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 14px;
+    flex-wrap: wrap;
+}
+
+.billing-type-row .billing-options-stack {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .billing-type-row .value-separator {
@@ -468,6 +475,23 @@ body {
 .billing-type-row .form-check-label {
     margin-bottom: 0;
     line-height: 1.2;
+}
+
+.billing-type-row .recommended-price-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 10px;
+}
+
+.billing-type-row .inline-label {
+    font-weight: 600;
+}
+
+.billing-type-row .inline-value {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .rec-pricing {
